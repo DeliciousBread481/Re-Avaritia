@@ -5,6 +5,7 @@ import committee.nova.mods.avaritia.api.util.lang.Localizable;
 import committee.nova.mods.avaritia.common.menu.InfinityChestMenu;
 import committee.nova.mods.avaritia.core.chest.ServerChestHandler;
 import committee.nova.mods.avaritia.core.chest.ServerChestManager;
+import committee.nova.mods.avaritia.core.chest.ServerChestManager;
 import committee.nova.mods.avaritia.init.registry.ModTileEntities;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;

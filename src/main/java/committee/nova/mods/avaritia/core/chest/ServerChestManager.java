@@ -37,6 +37,7 @@ public class ServerChestManager {
 
     public static ServerChestManager getInstance() {
         if (instance == null) {
+            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
             if (server == null) {  
                 LOGGER.warn("[ServerChestManager] getInstance() called but no server is running (client-side?). Returning null.");  
                 return null;  

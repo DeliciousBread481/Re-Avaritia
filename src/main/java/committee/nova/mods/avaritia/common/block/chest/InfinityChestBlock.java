@@ -2,6 +2,7 @@ package committee.nova.mods.avaritia.common.block.chest;
 
 import committee.nova.mods.avaritia.api.common.block.BaseTileEntityBlock;
 import committee.nova.mods.avaritia.common.tile.InfinityChestTile;
+import committee.nova.mods.avaritia.core.chest.ServerChestManager;
 import committee.nova.mods.avaritia.init.registry.ModBlocks;
 import committee.nova.mods.avaritia.init.registry.ModTileEntities;
 import committee.nova.mods.avaritia.util.StorageUtils;

@@ -49,7 +49,6 @@ import org.jetbrains.annotations.Nullable;
 
 import org.apache.logging.log4j.LogManager;  
 import org.apache.logging.log4j.Logger;  
-private static final Logger LOGGER = LogManager.getLogger();
 
 import java.util.List;
 import java.util.UUID;
@@ -58,6 +57,8 @@ import java.util.UUID;
  * @author cnlimiter
  */
 public class InfinityChestBlock extends BaseTileEntityBlock implements SimpleWaterloggedBlock {
+    private static final Logger LOGGER = LogManager.getLogger();
+    
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final VoxelShape AABB = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);

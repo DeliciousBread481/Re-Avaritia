@@ -26,6 +26,9 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import org.apache.logging.log4j.LogManager;  
+import org.apache.logging.log4j.Logger;
+
 import java.util.UUID;
 
 /**
@@ -46,6 +49,8 @@ public class InfinityChestTile extends BaseTileEntity implements LidBlockEntity 
     private ServerChestHandler channel = new ServerChestHandler();
     @Getter
     private LazyOptional<?> capability = LazyOptional.of(() -> channel);
+    
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public InfinityChestTile(BlockPos pos, BlockState state) {
         super(ModTileEntities.infinity_chest_tile.get(), pos, state);

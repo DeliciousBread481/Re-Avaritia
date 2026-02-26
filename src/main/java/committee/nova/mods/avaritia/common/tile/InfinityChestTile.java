@@ -61,6 +61,17 @@ public class InfinityChestTile extends BaseTileEntity implements LidBlockEntity 
     public @Nullable AbstractContainerMenu createMenu(int containerId, @NotNull Inventory playerInventory, @NotNull Player player) {
         return new InfinityChestMenu(containerId, player, this);
     }
+    
+    @Override  
+    public void handleUpdateTag(CompoundTag tag) {  
+        if (tag.contains("owner")) {  
+            owner = tag.getUUID("owner");  
+            locked = tag.getBoolean("locked");  
+        }  
+        if (tag.contains("filter")) filter = tag.getString("filter");  
+        if (tag.contains("sortType")) sortType = tag.getByte("sortType");  
+        if (tag.contains("channelID")) channelID = tag.getUUID("channelID");  
+    }
 
     @Override
     public void load(@NotNull CompoundTag pTag) {
@@ -71,7 +82,12 @@ public class InfinityChestTile extends BaseTileEntity implements LidBlockEntity 
         if (pTag.contains("filter")) filter = pTag.getString("filter");
         if (pTag.contains("sortType")) sortType = pTag.getByte("sortType");
         if (pTag.contains("channelID")) channelID = pTag.getUUID("channelID");
-        channel = ServerChestManager.getInstance().getChest(owner, channelID);
+        ServerChestManager manager = ServerChestManager.getInstance();  
+        if (manager == null) {  
+            LOGGER.warn("[InfinityChestTile] ServerChestManager is null during load(), skipping channel binding. pos={}", getBlockPos());  
+            return;  
+        }  
+        channel = manager.getChest(owner, channelID);  
     }
 
     @Override

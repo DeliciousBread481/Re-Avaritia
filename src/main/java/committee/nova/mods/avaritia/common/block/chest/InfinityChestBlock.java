@@ -2,7 +2,6 @@ package committee.nova.mods.avaritia.common.block.chest;
 
 import committee.nova.mods.avaritia.api.common.block.BaseTileEntityBlock;
 import committee.nova.mods.avaritia.common.tile.InfinityChestTile;
-import committee.nova.mods.avaritia.core.chest.ServerChestManager;
 import committee.nova.mods.avaritia.init.registry.ModBlocks;
 import committee.nova.mods.avaritia.init.registry.ModTileEntities;
 import committee.nova.mods.avaritia.util.StorageUtils;
@@ -47,6 +46,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import org.apache.logging.log4j.LogManager;  
+import org.apache.logging.log4j.Logger;  
+private static final Logger LOGGER = LogManager.getLogger();
 
 import java.util.List;
 import java.util.UUID;
@@ -126,6 +129,11 @@ public class InfinityChestBlock extends BaseTileEntityBlock implements SimpleWat
         if (pStack.getTag().contains("BlockEntityTag")) {
             CompoundTag nbt = pStack.getTag().getCompound("BlockEntityTag");
             if (nbt.contains("owner") && nbt.contains("channelID")) {
+                ServerChestManager manager = ServerChestManager.getInstance();  
+                if (manager == null) {  
+                    LOGGER.warn("[InfinityChestBlock] ServerChestManager is null in appendHoverText(), skipping tooltip content.");  
+                    return;
+                }
                 var owner = nbt.getUUID("owner");
                 var channelID = nbt.getUUID("channelID");
                 var channel = ServerChestManager.getInstance().getChest(owner, channelID);

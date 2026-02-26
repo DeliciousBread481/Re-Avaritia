@@ -32,6 +32,10 @@ public class ServerChestManager {
 
     public static ServerChestManager getInstance() {
         if (instance == null) {
+            if (server == null) {  
+                LOGGER.warn("[ServerChestManager] getInstance() called but no server is running (client-side?). Returning null.");  
+                return null;  
+            }
             synchronized (ServerChestManager.class) {
                 if (instance == null) {
                     instance = new ServerChestManager(ServerLifecycleHooks.getCurrentServer());

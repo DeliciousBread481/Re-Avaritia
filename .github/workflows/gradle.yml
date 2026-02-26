@@ -2,9 +2,9 @@ name: Forge Action
 
 on:
   push:
-    branches: [ "forge/*" ]
+    branches: [ "forge-1.20.1-bread" ]
   pull_request:
-    branches: [ "forge/*" ]
+    branches: [ "forge-1.20.1-bread" ]
 
 permissions:
   contents: read
